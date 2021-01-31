@@ -6,10 +6,10 @@ def generateRooksGraph(n):
             s = chr(i+97) + str(j)
             graph[s] = []
 
-            moves_across = [chr(i+97) + str(k + 1) for k in range(n)]
+            moves_horizontal = [chr(i+97) + str(k + 1) for k in range(n)]
             moves_vertical = [chr(k+97) + str(j) for k in range(n)]
 
-            graph[s].append(moves_across + moves_vertical)
+            graph[s].append(moves_horizontal + moves_vertical)
             
     return graph
 
