@@ -46,18 +46,7 @@ def generateRooksGraph(n):
             moves_vertical = [chr(k+97) + str(j) for k in range(n)]
 
             graph[s].append(moves_across + moves_vertical)
-
-            # for k in range(-n,n):
-            #     index = j + k
-            #     letter = i + k
-            #     if not (letter < 0 or letter > n-1) and not (index <= 0 or index > n) and not (k == 0):
-            #         v = chr(letter+97) + str(index)
-            #         graph[s].append(v)
-            #     index = j - k
-            #     letter = i + k
-            #     if not (letter < 0 or letter > n-1) and not (index <= 0 or index > n) and not (k == 0):
-            #         v = chr(letter+97) + str(index)
-            #         graph[s].append(v)
+            
     return graph
 
 
