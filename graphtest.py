@@ -32,10 +32,3 @@ def generateKingsGraph(n):
                         graph[currentSquare].append(validMove)
     return graph
 
-
-if __name__ == "__main__":
-    size = 3
-    graph = generateKingsGraph(n)
-    print(graph)
-
-
