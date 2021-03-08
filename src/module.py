@@ -66,6 +66,8 @@ def getNodes(d):
 def MainLoop(initTemp, finalTemp, CoolingRatio, EpochLength, initSolutionVector):
 	XBest = initSolutionVector
 	k = 0
-	for M in range(1,EpochLength+1):
+	currentTemp=initTemp
+	while currentTemp > finalTemp : 
+		for M in range(1,EpochLength+1):
 		
 	return 
