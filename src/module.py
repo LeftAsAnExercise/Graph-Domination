@@ -1,8 +1,13 @@
 ##Comment
+from random import choice, uniform
+from numpy import array, where
+
 class GraphTools:
-   def
-class SimulatedAnnealing:
    def 
+class SimulatedAnnealing:
+   def NodeSwap(SolutionVector):
+    	   
+    	   return
 
 	def getNodes(d):
 		nodes = []
