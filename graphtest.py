@@ -32,3 +32,4 @@ def generateKingsGraph(n):
                         graph[currentSquare].append(validMove)
     return graph
 
+print(generateKingsGraph(3))
