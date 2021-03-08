@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ##Comment
 from random import choice, uniform
 from numpy import array, where
@@ -54,6 +55,56 @@ def NodeAdd(SolutionVector):
 	
 def getNodes(d):
     
+=======
+class GraphTools:
+	def createMovementDictionary(length, func=GraphTools.knight):
+		graphDictionary = []
+		for i in range(len(solutionVector)):
+			graphDictionary = func(i, length)
+		return graphDictionary
+
+	def knight(i, length):
+		output = []
+		x = i % length
+		y = i // length
+		if x - 1 >= 0 and y - 2 >= 0:
+			output.append(x + y * length)
+		if x - 1 >= 0 and y + 2 < length:
+			output.append(x + y * length)
+		if x - 2 >= 0 and y - 1 >= 0:
+			output.append(x + y * length)
+		if x - 2 >= 0 and y + 1 < length:
+			output.append(x + y * length)
+		if x + 2 < length and y - 1 >= 0:
+			output.append(x + y * length)
+		if x + 2 < length and y + 1 < length:
+			output.append(x + y * length)
+		if x + 1 < length and y - 2 >= 0:
+			output.append(x + y * length)
+		if x + 1 < length and y + 2 >= 0:
+			output.append(x + y * length)
+		return output
+
+	def bishop(i, length):
+		output = []
+		x = i % length
+		y = i // length
+		for j in range(length):
+			if x + j < length and y + j < length:
+				output.append((j + x) + (y + j) * length)
+			if x + j < length and y - j >= 0:
+				output.append((j + x) + (y - j) * length)
+			if x - j >= - and y - j >= 0:
+				output.append((j - x) + (y - j) * length)
+			if x - j >= - and y + j < length:
+				output.append((j - x) + (y + j) * length)
+		return output
+			
+
+
+class SimulatedAnnealing:
+	def getNodes(d):
+>>>>>>> bf183e57eed4f2a3cb9d70d001e5e655be9a1c06
 		nodes = []
 		for i in d.keys():
 			if i not in nodes:
@@ -63,6 +114,7 @@ def getNodes(d):
 					nodes.append(j)
 
 		return len(nodes)
+<<<<<<< HEAD
 def MainLoop(initTemp, finalTemp, CoolingRatio, EpochLength, initSolutionVector):
 	XBest = initSolutionVector
 	k = 0
@@ -71,3 +123,15 @@ def MainLoop(initTemp, finalTemp, CoolingRatio, EpochLength, initSolutionVector)
 		for M in range(1,EpochLength+1):
 		
 	return 
+=======
+
+	def calculateObjectiveFunction(length, graphDictionary, solutionVector):
+		d = dict()
+		for i in range(len(solutionVector)):
+			if solutionVector[i]:
+				d[i] = graphDictionary[i]
+		V = length ** 2
+		n = getNodes(d)
+		G = solutionVector.count(1)
+		return n/V + 1/(V*G)
+>>>>>>> bf183e57eed4f2a3cb9d70d001e5e655be9a1c06
