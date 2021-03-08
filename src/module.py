@@ -106,14 +106,3 @@ def MainLoop(initTemp, finalTemp, CoolingRatio, EpochLength, initSolutionVector)
 		for M in range(1,EpochLength+1):
 		
 	return 
-
-def calculateObjectiveFunction(length, graphDictionary, solutionVector):
-	d = dict()
-	for i in range(len(solutionVector)):
-		if solutionVector[i]:
-			d[i] = graphDictionary[i]
-	V = length ** 2
-	n = getNodes(d)
-	G = solutionVector.count(1)
-	return n/V + 1/(V*G)
-
