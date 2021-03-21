@@ -124,15 +124,14 @@ def rook(i, length):
 def orthogonal(i, length, limit=1):
 	x = i % length
 	y = i // length
-	for j in range(limit):
-		if x + j < length:
-			output.append([(j + x), (y)])
-		if x - j >= 0:
-			output.append([(x - j), (y)])
-		if y + j < length:
-			output.append([(x),(y + j)])
-		if y - j >= 0:
-			output.append([(x), (y - j)])
+	if x + j < length:
+		output.append([(limit + x), (y)])
+	if x - j >= 0:
+		output.append([(x - limit), (y)])
+	if y + j < length:
+		output.append([(x),(y + limit)])
+	if y - j >= 0:
+		output.append([(x), (y - limit)])
 	return output
 
 def queen(i, length):
@@ -145,9 +144,9 @@ def queen(i, length):
 def createFairNotation(string):
 	def fair(i, length):
 		output = []
-		if string.contains("nX"):
-			output += bishop(i, length)
-		if string.contains("X")
+		if string.contains("n+"):
+			output += rook(i, length)
+		if string.contains("+")
 			output += orthogonal(i, length, n=n)
 		return list(set(output))
 	return fair
@@ -155,7 +154,7 @@ def createFairNotation(string):
 def createMovementDictionary(length, func=knight):
 	graphDictionary = []
 	for i in range(len(solutionVector)):
-		graphDictionary = func(i, length)
+		graphDictionary += func(i, length)
 	return graphDictionary
 
 def MainLoop(initTemp, finalTemp, CoolingRatio, EpochLength, initSolutionVector):
