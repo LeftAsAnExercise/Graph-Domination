@@ -20,7 +20,7 @@ def vectoradd(n,k):
 def rsLeaperGraph(n,r,s):
     lattice=latticemaker(n)
     banana=moveset(r,s)
-    print(lattice)
+    
     graph=dict()
     for x in range(n):
         for y in range(n):
@@ -31,8 +31,9 @@ def rsLeaperGraph(n,r,s):
                     continue
                 else:
                     continue
-    print(graph)
-    return
+    
+    return graph
 rsLeaperGraph(3,1,2)
-            
+
+
 
