@@ -1,5 +1,8 @@
 from random import choice, uniform
 from numpy import array, where
+import random
+import numpy
+import math
 
 def calculateObjectiveFunction(length, graphDictionary, solutionVector):
     d = dict()
@@ -69,10 +72,55 @@ def getNodes(d):
     return len(nodes)
 
 def MainLoop(initTemp, finalTemp, CoolingRatio, EpochLength, initSolutionVector):
-	XBest = initSolutionVector
-	k = 0
+    XBest = initSolutionVector
+    	y = initSolutionVector
+	Xk = initSolutionVector
+	
 	currentTemp=initTemp
 	while currentTemp > finalTemp : 
 		for M in range(1,EpochLength+1):
-		
+            Temp1 = Xk
+			y=Temp1
+			if calculateObjectiveFunction(y) >= 1:
+                NodeReduction(y)
+                
+
+                deltaFunction = calculateObjectiveFunction(y) - calculateObjectiveFunction(Xk)
+                if deltaFunction > 0:
+                    Temp1 = y
+                    XBest = y
+                    Xk = Temp1
+                else:
+                    probabilityAcceptance = 1/ (1 + math.exp(deltaFunction/currentTemp)
+                    if random.random() < probabilityAcceptance:
+                        Xk = y
+                    else:
+                        Xk = Xk
+                
+            else:
+                NodeAdd(y)
+                if calculateObjectiveFunction(y) > calculateObjectiveFunction(Xk):
+                    Temp1 = y
+                    XBest = y
+                    Xk = Temp1
+            if calculateObjectiveFunction(y) < calculateObjectiveFunction(Xk):
+                Temp1 = Xk
+                z = Temp1
+                NodeSwapper(z)
+                deltaFunction = calculateObjectiveFunction(z) - calculateObjectiveFunction(Xk)
+                if deltaFunction > 0:
+                    Temp1 = z
+                    XBest = z
+                    Xk = Temp1
+                else:
+                    probabilityAcceptance = 1/(1 + math.exp(deltaFunction/currentTemp))
+                    if random.random() < probabilityAcceptance:
+                        Xk = z
+                    else:
+                        Xk = Xk
+        
+        if currentTemp > finalTemp:
+            currentTemp *= CoolingRatio
+        else:
+            break        
 	return 
