@@ -1,0 +1,63 @@
+moveset = {}
+firstMove = True
+class Pawn:
+
+    def __init__(self):
+        self.moves = []
+        self.moves = ['o1>', 'c1X>', 'oi2>']
+    def getMoves(self):
+        return self.moves
+
+
+class Knight:
+    def __init__(self):
+        self.moves = ['~1/2']
+    def getMoves(self):
+        return self.moves
+
+
+class Bishop:
+    def __init__(self, n):
+        self.moves = []
+        for i in range (-n + 1, n):
+            self.moves.append(str(i) + "X")
+    def getMoves(self):
+        return self.moves
+
+class Rook:
+    def __init__(self, n):
+        self.moves = []
+        for i in range (-n + 1, n):
+            self.moves.append(str(i) + "+")
+    def getMoves(self):
+        return self.moves
+
+class Queen:
+    def __init__(self, n):
+        self.moves = []
+        for i in range (-n + 1, n):
+            self.moves.append(str(i) + "*")
+    def getMoves(self):
+        return self.moves
+
+class King:
+    def __init__(self):
+        self.moves = ['1*']
+    def getMoves(self):
+        return self.moves
+
+
+#
+rook = Rook(8)
+moveset[rook] = rook.getMoves()
+knight = Knight()
+moveset[knight] = knight.getMoves()
+bishop = Bishop(8)
+moveset[bishop] = bishop.getMoves()
+pawn = Pawn()
+moveset[pawn] = pawn.getMoves()
+queen = Queen(8)
+moveset[queen] = queen.getMoves()
+king = King()
+moveset[king] = king.getMoves()
+print(moveset)
