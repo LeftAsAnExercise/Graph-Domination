@@ -38,14 +38,16 @@ def stochastic_local_search(solutionVector):
 
 def proportional_probability(solutionVector):
     l = []
+    emptynodes = []
     for index, value in enumerate(solutionVector):
         if not value:
-
-            temp1 = [index] * len(graphDictionary[index])
-            
-            l.extend(temp1)
-            
-    return choice(l)
+            l.extend([index] * len(graphDictionary[index]))
+            if not len(graphDictionary[index]):
+                emptynodes.append(index)
+    try:
+        return choice(l)
+    except Exception :
+        return choice(emptynodes)
 
 
 def inverse_probability(solutionVector):
@@ -53,7 +55,10 @@ def inverse_probability(solutionVector):
     s = 0
     for index, value in enumerate(solutionVector):
         if value:
-            s += 1/len(graphDictionary[index])
+            try:
+                s += 1/len(graphDictionary[index])
+            except ZeroDivisionError:
+                pass
             d[s] = index
     p = uniform(0, s)
     for i in d.keys():
@@ -139,9 +144,8 @@ def MainLoop(initTemp, finalTemp, CoolingRatio, EpochLength, initSolutionVector)
 
         if currentTemp > finalTemp:
             currentTemp *= CoolingRatio
-            
-            
         else:
             break
     return XBest
-print(MainLoop(1500,150,0.95,10,[0,0,0,0,0,0,0,0,1]))
+
+print(MainLoop(15000,150,0.95,10,[0,0,0,0,0,0,0,0,1]))
